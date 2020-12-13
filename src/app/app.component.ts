@@ -24,13 +24,11 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.uniqueDeviceID.get()
-  .then((uuid: any) => console.log(uuid))
-  .catch((error: any) => console.log(error));
+    
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      
+
 
       // deviceID
     // febyklovsFI:APA91bHxb0llHsNAsVE7Ze2ERb9hQlbQukM7-A7Eej1uWJJLJr42EKoZaXR5Oh1sFQd-wz_nxGT3xVfDstHPcBC7UvAzRHXscPw68qUfI9CR1XZnop7wHt7CWz0tJfUpB3dGagRsZkcB

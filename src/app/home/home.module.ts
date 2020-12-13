@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-import { FCM } from '@ionic-native/fcm/ngx';
+// import { FCM } from '@ionic-native/fcm/ngx';
+// import { HttpClientModule } from '@angular/common/http';
+
 import { HomePageRoutingModule } from './home-routing.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     HomePageRoutingModule,
-    FCM
+    // HttpClientModule
+    // FCM
   ],
   declarations: [HomePage]
 })
