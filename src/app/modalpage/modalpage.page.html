@@ -1,0 +1,34 @@
+<div class="ion-page">
+  <ion-header class="ion-no-border">
+    <ion-toolbar >
+      <ion-buttons slot="end">
+        <ion-button ion-button (click)="closeModal()" ion-end>Close</ion-button>
+      </ion-buttons>
+      <ion-title>{{talent.firstName}} {{talent.lastName}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content style="--padding-end: 0px">
+    <div style="align-items: center; --padding-end: 0px" class="ion-no-margin ion-no-padding">
+  
+        <img src="../assets/{{talent.image}}" style="height: 33vh;width: 190px;margin-left: 75px;display: block;"/>
+        <h3 style="text-align: center;">{{talent.about}}</h3>
+        <ion-grid>
+          <ion-row style="padding: 15%; padding-top: 0; padding-bottom: 0;">
+            <ion-col>
+              <div style="text-align: center;">
+              <ion-button  color="secondary" style="align-items: center;">ACCEPT</ion-button>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align: center;">
+                <ion-button (click)="presentLoading()" color="danger" style="align-items: center;">DECLINE</ion-button>
+              </div>
+            </ion-col>
+          
+          </ion-row>
+        </ion-grid>
+    </div>
+  </ion-content>
+  
+</div>

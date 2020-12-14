@@ -25,6 +25,7 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic-native/unique-device-id": "^5.30.0",
     "@ionic/angular": "^5.0.0",
+    "@ionic/storage": "^2.3.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
@@ -41,7 +42,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
-    "cordova-android": "^6.4.0",
+    "cordova-android": "9.0.0",
     "cordova-android-support-gradle-release": "^3.0.1",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-fcm-with-dependecy-updated": "^2.4.0",
@@ -49,8 +50,9 @@
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
-    "cordova-plugin-uniquedeviceid": "^1.3.2",
+    "cordova-plugin-unique-device-id2": "^2.0.0",
     "cordova-plugin-whitelist": "^1.3.3",
+    "cordova-sqlite-storage": "^5.1.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -74,9 +76,12 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-android-support-gradle-release": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
+      },
       "cordova-plugin-fcm-with-dependecy-updated": {},
-      "cordova-plugin-uniquedeviceid": {}
+      "cordova-plugin-unique-device-id2": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "android"

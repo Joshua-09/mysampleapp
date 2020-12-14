@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private fcm: FCM,
-    private uniqueDeviceID: UniqueDeviceID
+    private uniqueDeviceID: UniqueDeviceID,
+    private storage: Storage
   ) {
     this.initializeApp();
   }
@@ -28,8 +31,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-
+      
       // deviceID
     // febyklovsFI:APA91bHxb0llHsNAsVE7Ze2ERb9hQlbQukM7-A7Eej1uWJJLJr42EKoZaXR5Oh1sFQd-wz_nxGT3xVfDstHPcBC7UvAzRHXscPw68qUfI9CR1XZnop7wHt7CWz0tJfUpB3dGagRsZkcB
 

@@ -1,0 +1,17 @@
+<ion-content class="ion-padding">
+  <div style="height: 25px;"><h3>Hi! <span><img src="../assets/Group-2.png" height="25" width="25" ></span></h3></div>
+  <h3 style="color: #900C3E">{{user.firstName}}</h3>
+  <ion-searchbar mode="ios" showCancelButton="focus" class="ion-no-margin ion-no-padding" expand="block" animated></ion-searchbar>
+    <ion-grid class="ion-no-margin ion-no-padding">
+      <ion-row class="ion-justify-content-start">
+        <ion-col size="6" *ngFor="let talents of talent; let i =index">
+      
+          <ion-card style="box-shadow:none !important" (click)="presentModal(i)">
+            <img src="../assets/{{talents.image}}"/>
+            <div class="card-title ion-padding">{{talents.firstName}}</div>
+            <div class="card-subtitle ion-padding">{{talents.address}}</div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

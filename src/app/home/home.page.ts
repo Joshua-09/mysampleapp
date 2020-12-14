@@ -6,10 +6,11 @@ import { PopoverController } from '@ionic/angular';
 // import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { ModalController} from '@ionic/angular';  
+import { ModalController } from '@ionic/angular';
 // import { ModalPage } from '../modal/modal.page'; 
 import { ToastController } from '@ionic/angular';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+import { Storage } from '@ionic/storage';
 
 // import { GeneralService } from 'src/app/general.service';
 
@@ -21,19 +22,42 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  deviceID: String = ""
   constructor(
     // private fcm:FCM,
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     public popoverController: PopoverController,
     // private datePicker: DatePicker, 
     private router: Router,
+    private storage: Storage,
     // private http: HttpClient,
     public modalCtrl: ModalController,
     public toastController: ToastController,
     private uniqueDeviceID: UniqueDeviceID
     // private gen: GeneralService,
-    ) {}
+  ) {
+    
+
+    this.storage.get("deviceID").then((val) => {
+      console.log("My Devide ID is : ", val);
+    });
+    this.storage.get("deviceToken").then((val) => {
+      console.log("My Devide Token is : ", val);
+    });
+  }
+
+
+
+  onClick(){
+    this.storage.set("deviceID", "7bcc9893-a1b9-4ef1-b78a-fce6ff9cd82e");
+    this.storage.set("deviceToken", "febyklovsFI:APA91bHxb0llHsNAsVE7Ze2ERb9hQlbQukM7-A7Eej1uWJJLJr42EKoZaXR5Oh1sFQd-wz_nxGT3xVfDstHPcBC7UvAzRHXscPw68qUfI9CR1XZnop7wHt7CWz0tJfUpB3dGagRsZkcB");
+    this.storage.get("deviceID").then((val)=>{
+      this.deviceID = val;
+    });
+  }
+
+
+  // Unique Device ID   7bcc9893-a1b9-4ef1-b78a-fce6ff9cd82e
 
   // getToken(){
   //   this.fcm.getToken().then(token => {
@@ -50,7 +74,7 @@ export class HomePage {
 
   myVariable: String = "";
   map: any;
-  public myValue:boolean = false;
+  public myValue: boolean = false;
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Please complete your form',
@@ -58,16 +82,16 @@ export class HomePage {
     });
     toast.present();
   }
-  
+
 
   hobbies = [
-    {name: 'dancing' },
-    {name: 'reading' },
-    {name: 'singing' },
-    {name: 'sports' },
+    { name: 'dancing' },
+    { name: 'reading' },
+    { name: 'singing' },
+    { name: 'sports' },
   ];
-  
-  change(){
+
+  change() {
     this.myValue = !this.myValue;
     console.log(this.myValue);
   }
@@ -89,11 +113,11 @@ export class HomePage {
     }
   }
 
-  go(){
+  go() {
     this.router.navigate(['home']);
   }
 
-  
+
   // async presentPopover(ev: any) {
   //   const popover = await this.popoverController.create({
   //     component: PopoverComponent,
@@ -103,45 +127,45 @@ export class HomePage {
   //   });
   //   return await popover.present();
   // }
-  
-  get firstName(){
+
+  get firstName() {
     return this.registrationForm.get("firstName");
   }
-  get password(){
+  get password() {
     return this.registrationForm.get("password");
   }
 
-  get middleName(){
+  get middleName() {
     return this.registrationForm.get("middleName");
   }
 
-  get lastName(){
+  get lastName() {
     return this.registrationForm.get("lastName");
   }
-  get numberSS(){
+  get numberSS() {
     return this.registrationForm.get("numberSS");
   }
-  get about(){
+  get about() {
     return this.registrationForm.get("about");
   }
 
-  get birthDate(){
+  get birthDate() {
     return this.registrationForm.get("birthDate");
   }
 
-  get email(){
+  get email() {
     return this.registrationForm.get("email");
   }
 
-  get gender(){
+  get gender() {
     return this.registrationForm.get("gender");
   }
 
-  get suffix(){
+  get suffix() {
     return this.registrationForm.get("suffix");
   }
 
-  get toggle(){
+  get toggle() {
     return this.registrationForm.get("toggle");
   }
 
@@ -186,8 +210,8 @@ export class HomePage {
     ],
     password: [
       { type: 'required', message: 'Password is required' },
-      {type: 'maxlength', message: 'Password cant be longer than 30 characters' },
-      {type: 'minlength', message: 'Password cant be shorter than 8 characters' },
+      { type: 'maxlength', message: 'Password cant be longer than 30 characters' },
+      { type: 'minlength', message: 'Password cant be shorter than 8 characters' },
     ],
     birthDate: [
       { type: 'required', message: 'Birth Date is required' },
@@ -208,8 +232,8 @@ export class HomePage {
   };
 
   registrationForm = this.formBuilder.group({
-    firstName: ['',[Validators.required, Validators.maxLength(30)]],
-    middleName: ['',[ Validators.maxLength(30)]],
+    firstName: ['', [Validators.required, Validators.maxLength(30)]],
+    middleName: ['', [Validators.maxLength(30)]],
     lastName: ['', [Validators.required, Validators.maxLength(30)]],
     password: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(8)]],
     numberSS: ['+63', [Validators.required, Validators.maxLength(13), Validators.minLength(13)]],
@@ -222,7 +246,7 @@ export class HomePage {
         Validators.pattern('^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$')
       ]
     ],
-    about: ['', ],
+    about: ['',],
     // toggle: ['', ],
     birthDate: ['', [Validators.required]],
     gender: ["male", [Validators.required]],
@@ -238,22 +262,17 @@ export class HomePage {
   isSubmitted = false;
   public submit() {
     this.isSubmitted = true;
-    if(this.registrationForm.valid){
-      console.log(this.registrationForm.value);
-      this.uniqueDeviceID.get()
-      .then((uuid: any) => console.log(uuid))
-      .catch((error: any) => console.log(error));
-      // this.router.navigate(['main-page']);
-    }else{
+    if (this.registrationForm.valid) {
+      this.storage.set("regForm", this.registrationForm.value)
+      this.router.navigate(['login']);
+    } else {
       this.presentToast();
-        
     }
-   
 
-    let data = {
-      appkey:'WGKCSGGW9ryfzLrCc5kt3uRSW5ACa62uDHzpTgd8h969KMHXxFrzp7FdtcfX2bSLjfRw79TXs9e3fJ4JcQAefHpWtVEHUFx23jbd',
-      device_token: 'Dz3zE2gNCNd9UKX3XYbqH7fuHwTHKrQ6DSgYeDsvbK262ELBHtawbgBPE6njWPk9q7J8YSNSeTZGxf5t3A5fgPjaCJRgRXBNRp9JNK9YDwaDBDMND7ZKXfwTZapTZXFxd'
-    }
-    const url = this.url+'/api/token/get';
-}
+    // let data = {
+    //   appkey: 'WGKCSGGW9ryfzLrCc5kt3uRSW5ACa62uDHzpTgd8h969KMHXxFrzp7FdtcfX2bSLjfRw79TXs9e3fJ4JcQAefHpWtVEHUFx23jbd',
+    //   device_token: 'febyklovsFI:APA91bHxb0llHsNAsVE7Ze2ERb9hQlbQukM7-A7Eej1uWJJLJr42EKoZaXR5Oh1sFQd-wz_nxGT3xVfDstHPcBC7UvAzRHXscPw68qUfI9CR1XZnop7wHt7CWz0tJfUpB3dGagRsZkcB'
+    // }
+    // const url = this.url + '/api/token/get';
+  }
 }

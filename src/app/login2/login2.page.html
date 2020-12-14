@@ -1,0 +1,37 @@
+<ion-header  class="ion-no-border">
+  <ion-toolbar><div class="ion-padding"><img src="../assets/keyboard_backspace_24px.png" width="20" height="15" (click)="back()"></div></ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 class="ion-padding">Login</h3>
+  <form [formGroup]="loginForm">
+    <ion-item lines="none" style="background: transparent; " color="none">
+      <ion-label position="stacked" class="name">
+        Email
+      </ion-label>
+      <ion-input  formControlName="email" inputmode="text" class="input" type="text" placeholder="Enter email">
+      </ion-input>
+    </ion-item>
+    <div style="margin-left: 15px;" *ngFor="let error of errorMessages.email">
+      <ng-container *ngIf="email.hasError(error.type) && isSubmitted">
+        <ion-label style="font-size: 11px; font-family: 'DM Sans', sans-serif; color: #900C3E;" class="error-message"
+          position="floating">{{error.message}}</ion-label>
+      </ng-container>
+    </div>
+    <ion-item lines="none" style="background: transparent; " color="none">
+      <ion-label position="stacked" class="name">
+        Password
+      </ion-label>
+      <ion-input formControlName="password" inputmode="text" class="input" type="password" placeholder="Enter password" obscure="true">
+      </ion-input>
+    </ion-item>
+    <div style="margin-left: 15px;" *ngFor="let error of errorMessages.password">
+      <ng-container *ngIf="password.hasError(error.type) && isSubmitted">
+        <ion-label style="font-size: 11px; font-family: 'DM Sans', sans-serif; color: #900C3E;" class="error-message"
+          position="floating">{{error.message}}</ion-label>
+      </ng-container>
+    </div>
+
+      <ion-button (click)="onSubmit()" expand="block" class="ion-padding" style="height: 80px; --background: #900C3E;">Login</ion-button>
+  </form>
+</ion-content>
