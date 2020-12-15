@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login2',
@@ -10,14 +11,19 @@ import { Router } from '@angular/router';
 })
 export class Login2Page implements OnInit {
   user:any =[]
-
+  api = "https://reqres.in/api/users?page=2"
   constructor(
     private formBuilder: FormBuilder,
     private storage: Storage,
     private router: Router,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
+    this.http.get(this.api).subscribe((response:any) => {
+      this.user = response.data
+      console.log(this.user[0].email)
+    });
   }
 
   get email() {
@@ -47,21 +53,18 @@ export class Login2Page implements OnInit {
   private isSubmitted = false
   public onSubmit(){
     console.log("enter")
+    
     this.isSubmitted = true
     if (this.loginForm.valid) {
-      this.storage.get("regForm").then((val)=>{
-        this.user = val
-        if(this.user.email != this.loginForm.value.email){
-          console.log("email is not match");
+      for(let x=0;x < this.user.length ; x++){
+        console.log(`${this.user[x].first_name}${this.user[x].last_name}`)
+        if(this.user[x].email == this.loginForm.value.email){
+          console.log("tama una")
+          if(`${this.user[x].first_name}${this.user[x].last_name}` == this.loginForm.value.password){
+            this.router.navigate(['main-page/',`${this.user[x].id}`]);
+          }
         }
-        if(this.user.password != this.loginForm.value.password){
-          console.log("password is not match")
-        }
-        if((this.user.email == this.loginForm.value.email) && (this.user.password == this.loginForm.value.password)){
-          console.log("Navigate to Main page!")
-          this.router.navigate(['main-page'])
-        }
-      })
+      }
     }else{
       console.log("not okay")
     }

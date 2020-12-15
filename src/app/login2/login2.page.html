@@ -25,6 +25,7 @@
       <ion-input formControlName="password" inputmode="text" class="input" type="password" placeholder="Enter password" obscure="true">
       </ion-input>
     </ion-item>
+    {{this.loginForm.value.password}}
     <div style="margin-left: 15px;" *ngFor="let error of errorMessages.password">
       <ng-container *ngIf="password.hasError(error.type) && isSubmitted">
         <ion-label style="font-size: 11px; font-family: 'DM Sans', sans-serif; color: #900C3E;" class="error-message"

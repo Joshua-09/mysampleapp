@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { IonicModule } from '@ionic/angular';
+// import { UserProfileService } from '../user-profile.service'; 
 
 import { LoginPageRoutingModule } from './login-routing.module';
 
@@ -13,7 +15,9 @@ import { LoginPage } from './login.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,
+    // UserProfileService,
+    HttpClientModule
   ],
   declarations: [LoginPage]
 })

@@ -1,16 +1,38 @@
 <ion-content class="ion-padding">
   <div style="height: 25px;"><h3>Hi! <span><img src="../assets/Group-2.png" height="25" width="25" ></span></h3></div>
-  <h3 style="color: #900C3E">{{user.firstName}}</h3>
+  <h3 style="color: #900C3E">{{user.first_name}}</h3>
   <ion-searchbar mode="ios" showCancelButton="focus" class="ion-no-margin ion-no-padding" expand="block" animated></ion-searchbar>
     <ion-grid class="ion-no-margin ion-no-padding">
-      <ion-row class="ion-justify-content-start">
-        <ion-col size="6" *ngFor="let talents of talent; let i =index">
+      {{talents}}
+      <ion-row *ngIf="talents == null" class="ion-justify-content-start">
+        <ion-col class="ion-no-margin ion-no-padding" size="6" *ngFor="let talent of talents; let i =index"> 
+          <div class="custom-skeleton">
+            <ion-item lines="none" style=" margin:0; padding: 0px;height: 200px;">
+              <ion-thumbnail style="width: 50vh;height: 260px;">
+                <ion-skeleton-text animated style="height: 260px; margin:0px; --padding-start: 0px;"></ion-skeleton-text>
+              </ion-thumbnail>
+            </ion-item>
+          </div>
+        </ion-col>
+    </ion-row>
+      <ion-row class="ion-justify-content-start" *ngIf="talent != null">
+          <ion-col size="6" *ngFor="let talent of talents; let i =index">
+            <ion-card style="box-shadow:none !important" (click)="presentModal(i)">
+              <div [ngStyle]="{'color': getColor(i)}"  [ngClass]="{'txt-st': talents.id % 2 == 0}" class="card-title ion-padding">{{talent.first_name}}</div>
+              <!-- <div class="card-subtitle ">{{talents.address}}</div> -->
+              <img src="{{talent.avatar}}" class="img"/>
+            </ion-card>
+          </ion-col>
+      </ion-row>
+     
       
-          <ion-card style="box-shadow:none !important" (click)="presentModal(i)">
-            <img src="../assets/{{talents.image}}"/>
-            <div class="card-title ion-padding">{{talents.firstName}}</div>
-            <div class="card-subtitle ion-padding">{{talents.address}}</div>
-          </ion-card>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-button (click)="addTalent()">
+              ADD
+            </ion-button>
+          </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>

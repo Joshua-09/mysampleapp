@@ -20,8 +20,11 @@ const routes: Routes = [
     loadChildren: () => import('./login2/login2.module').then( m => m.Login2PageModule)
   },
   {
-    path: 'main-page',
-    loadChildren: () => import('./main-page/main-page.module').then( m => m.MainPagePageModule)
+    path: 'main-page/:id',
+    loadChildren: () => import('./main-page/main-page.module').then( m => m.MainPagePageModule),
+    data: {
+      preload: true
+    },
   },
   {
     path: 'modalpage',

@@ -1,18 +1,29 @@
 .card-title {
     position: absolute;
-    top: 50%;
-    font-size: 2.0em;
+    top: 60%;
+    font-size: 1.5em;
+    text-shadow: black 1px 1px;
     width: 100%;
     font-weight: bold;
     color: #fff;
+
+  }
+
+  .txt-st{
+
+    font-family: "Lato-light";
   }
 
   .card-subtitle {
-    font-size: 1.0em;
+    font-size: 0.3em;
     position: absolute;
-    top: 61%;
+    top: 81%;
     width: 100%;
     color: #fff;
+
   }
 
-
+.img{
+  width: 50vh;
+  height: 100%;
+}

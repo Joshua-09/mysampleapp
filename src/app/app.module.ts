@@ -13,12 +13,12 @@ import { FCM } from '@ionic-native/fcm/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { ModalpagePage } from './modalpage/modalpage.page';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent,ModalpagePage],
   entryComponents: [ModalpagePage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
