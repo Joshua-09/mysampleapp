@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Talent</ion-title>
+    <ion-buttons slot="end">
+      <ion-button ion-button (click)="closeModal()" ion-end>Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  <form [formGroup]="addtalent">
+    <ion-item lines="none" style="background: transparent; " color="none">
+      <ion-label position="stacked" class="name">
+        First Name
+      </ion-label>
+      <ion-input formControlName="first_name" inputmode="text" type="text" class="item-input" placeholder="Enter First Name">
+      </ion-input>
+    </ion-item>
+    <ion-item lines="none" style="background: transparent;" color="none">
+      <ion-label position="stacked" class="name">
+        Last Name
+      </ion-label>
+      <ion-input formControlName="last_name" inputmode="text" type="text" id="lastName" class="padding" placeholder="Enter Last Name"></ion-input>
+    </ion-item>
+    <ion-item lines="none" style="background: transparent;" color="none">
+      <ion-label position="stacked" class="name" style=" font-family: 'DM Sans', sans-serif;">
+        Email Address
+      </ion-label>
+      <ion-input formControlName="email" inputmode="email" placeholder="Enter Email Address"></ion-input>
+    </ion-item>
+  </form>
+  <ion-button (click)="submit()">Submit</ion-button>
+<ion-content>
+</ion-content>

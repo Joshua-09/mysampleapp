@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-// import { FCM } from '@ionic-native/fcm/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PopoverController } from '@ionic/angular';
+import { Platform, PopoverController } from '@ionic/angular';
 // import { PopoverComponent} from '../popover/popover.component'
 // import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { Router } from '@angular/router';
@@ -23,8 +23,9 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage {
   deviceID: String = ""
+  deviceToken:any
   constructor(
-    // private fcm:FCM,
+    private fcm:FCM,
     private formBuilder: FormBuilder,
     public popoverController: PopoverController,
     // private datePicker: DatePicker, 
@@ -33,20 +34,42 @@ export class HomePage {
     // private http: HttpClient,
     public modalCtrl: ModalController,
     public toastController: ToastController,
-    private uniqueDeviceID: UniqueDeviceID
+    private uniqueDeviceID: UniqueDeviceID,
+    public plt: Platform
     // private gen: GeneralService,
   ) {
-    
-
+    this.fcm.getToken().then(data=>{
+      this.storage.set("deviceToken", data)
+    })
+    this.storage.get("deviceToken").then(data=>{
+      this.deviceToken = data
+      console.log("My Devide Token is : ", this.deviceToken);
+    })
+    this.plt.ready().then(()=>{
+      this.fcm.onNotification().subscribe(data =>{
+        if(data.wasTapped){
+          console.log("RECEIVED IN BACKGROUND")
+        }else{
+          console.log("RECEIVED IN FOREGROUND")
+        };
+        });
+        
+    })
+    this.fcm.hasPermission().then(hasPermission => {
+      if (hasPermission) {
+        console.log("Has permission!");
+      }
+    })
     this.storage.get("deviceID").then((val) => {
       console.log("My Devide ID is : ", val);
     });
-    this.storage.get("deviceToken").then((val) => {
-      console.log("My Devide Token is : ", val);
-    });
   }
 
+  subscripeToTopic(){
+    this.fcm.subscribeToTopic('enappd');
+  }
 
+ 
 
   onClick(){
     this.storage.set("deviceID", "7bcc9893-a1b9-4ef1-b78a-fce6ff9cd82e");
@@ -61,6 +84,7 @@ export class HomePage {
 
   // getToken(){
   //   this.fcm.getToken().then(token => {
+  //     backend.regis
   //     console.log("check ko lang kung merong token",token);
   //   });
   // }

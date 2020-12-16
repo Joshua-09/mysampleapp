@@ -4,7 +4,8 @@ import { ModalpagePage } from '../modalpage/modalpage.page';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
-import { timer } from 'rxjs';
+import { AddTalentpagePage } from '../add-talentpage/add-talentpage.page';
+// import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-main-page',
@@ -15,6 +16,8 @@ export class MainPagePage implements OnInit {
   user: any = []
   id: any
   sub: any
+  loading = false
+  show = true
   talents: any
     //   { firstName: "Jose", lastName: "Clapis", screenName: "Choy", address: "Imus, Cavite", about: "Young and bold", image: "Rectangle.png" },
     // { firstName: "Paolo", lastName: "Manlangit", screenName: "Manheaven", address: "Molino, Cavite", about: "Silent and dark", image: "Paolo.png" },
@@ -38,7 +41,6 @@ export class MainPagePage implements OnInit {
   ) {
     
   }
-  loading: any
 
   async presentModal(index: any) {
     const modal = await this.modalController.create({
@@ -61,6 +63,23 @@ export class MainPagePage implements OnInit {
     return await modal.present();
   }
 
+  async addpresentModal(index: any) {
+    console.log(this.talents.length-1)
+    const modal = await this.modalController.create({
+      component: AddTalentpagePage,
+      cssClass: 'modal',
+      animated: true,
+      swipeToClose: true,
+      backdropDismiss: false,
+      presentingElement: await this.modalController.getTop()
+    });
+    modal.onDidDismiss().then((res)=>{
+    this.talents[this.talents.length] = res.data.talent
+      this.addTalent(this.talents)
+    });
+    return await modal.present();
+  }
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -73,16 +92,21 @@ export class MainPagePage implements OnInit {
       console.log(res)
     })
     this.talents.splice(id,1)
-  }
+  } 
 
   ngOnInit() {
+    this.loading =true
+    // this.cd.detectChanges();
     let api2 = "https://reqres.in/api/users"
     this.http.get(api2).subscribe((params: any) => {
-      console.log(this.talents)
-      this.talents = params.data
+      // this.talents = params.data
+      
       setTimeout(() => {
+        this.loading = false
+        this.talents = params.data
         // this.talent.splice(2,1)
-    }, 5000);
+        console.log(this.talents)
+    },1500);
     })
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -95,6 +119,31 @@ export class MainPagePage implements OnInit {
   }
 
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.show = false
+      console.log('Async operation has ended');
+     
+      this.loading =true
+    // this.cd.detectChanges();
+    let api2 = "https://reqres.in/api/users"
+    this.http.get(api2).subscribe((params: any) => {
+      // this.talents = params.data
+      
+      setTimeout(() => {
+        this.loading = false
+        this.show = true
+        this.talents = params.data
+
+        // this.talent.splice(2,1)
+        console.log(this.talents)
+    },1500);
+    })
+      event.target.complete();
+    }, 2000);
+  }
 
   talentado = {
     id: 69,
@@ -104,10 +153,10 @@ export class MainPagePage implements OnInit {
     avatar: "https://reqres.in/img/faces/11-image.jpg"
   }
 
-  addTalent() {
-    let api3 = "https://reqres.in/api/users"
-    this.http.post(api3, this.talentado).subscribe((data: any) => {
-      console.log(data)
-    })
+    addTalent(talent:any) {
+      let api3 = "https://reqres.in/api/users"
+      this.http.post(api3, talent).subscribe((data: any) => {
+        console.log(data)
+      })
+    }
   }
-}

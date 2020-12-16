@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'modalpage',
     loadChildren: () => import('./modalpage/modalpage.module').then( m => m.ModalpagePageModule)
   },
+  {
+    path: 'add-talentpage',
+    loadChildren: () => import('./add-talentpage/add-talentpage.module').then( m => m.AddTalentpagePageModule)
+  },
 ];
 
 @NgModule({
