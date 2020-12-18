@@ -12,17 +12,17 @@
 <ion-content padding #content>
 	<ion-list >
 		<!-- <ion-grid  style="width: 100%;"> -->
-			<ion-row *ngFor="let chat of reversedList">
-				<ion-col *ngIf="chat.data.user == user">
-					<div class="ion-text-end padd" *ngIf="chat.data.message.length > 0">
+			<ion-row *ngFor="let chat of mess">
+				<ion-col *ngIf="chat.user == user">
+					<div class="ion-text-end padd">
 						<!-- <h3 s>{{user}}</h3> -->
-						{{chat.data.message}}
+						{{chat.text}}
 					</div>
 				</ion-col>
-				<ion-col *ngIf="chat.data.user != user">
-					<div class="ion-text-start padd2" *ngIf="chat.data.message.length > 0">
+				<ion-col *ngIf="chat.user != user">
+					<div class="ion-text-start padd2">
 						<!-- <h3 s>{{user}}</h3> -->
-						{{chat.data.message}}
+						{{chat.text}}
 					</div>
 				</ion-col>
 			</ion-row>
@@ -32,7 +32,8 @@
 </ion-content>
 <ion-footer>
 	<ion-item>
-		<ion-input type="text" placeholder="type here..." [(ngModel)]="data.message"></ion-input>
-		<button ion-button clear item-right (click)="sendMessage()">Send</button>
+		<ion-input type="text" placeholder="type here..." [(ngModel)]="data.message" required></ion-input>
+		<button [hidden]="data.message==''" ion-button clear item-right (click)="sendMessage()">Send</button>
+		
 	</ion-item>
 </ion-footer>
