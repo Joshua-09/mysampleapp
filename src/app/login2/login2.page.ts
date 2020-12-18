@@ -22,10 +22,14 @@ export class Login2Page implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get(this.api).subscribe((response:any) => {
-      this.user = response.data
-      console.log(this.user[0].email)
-    });
+    this.user = [{id: 1, first_name: "Joshua", last_name: "Encarnado", email: "joshuaencarnado@email.com", password: "Qq123456789"},
+    {id:2, first_name: "Jolina", last_name: "Galagar", email:"jolinagalagar@email.com", password:"Qq123456789"}
+  ]
+  
+    // this.http.get(this.api).subscribe((response:any) => {
+    //   this.user = response.data
+    //   console.log(this.user[0].email)
+    // });
   }
 
   get email() {
@@ -66,16 +70,17 @@ export class Login2Page implements OnInit {
   private isSubmitted = false
   public onSubmit(){
     console.log("enter")
-    
     this.isSubmitted = true
     if (this.loginForm.valid) {
       for(let x=0;x < this.user.length ; x++){
         console.log(`${this.user[x].first_name}${this.user[x].last_name}`)
         if(this.user[x].email == this.loginForm.value.email){
           console.log("tama una")
-          if(`${this.user[x].first_name}${this.user[x].last_name}` == this.loginForm.value.password){
+          if(this.user[x].password == this.loginForm.value.password){
+            this.storage.set("user", this.user[x])
             setTimeout(()=>{
               this.presentLoading().then(()=>{
+                this.storage.set("user", this.user[x])
                 this.router.navigate(['main-page/',`${this.user[x].id}`]);
               })
             },1500

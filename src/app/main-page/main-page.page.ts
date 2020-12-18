@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
 import { AddTalentpagePage } from '../add-talentpage/add-talentpage.page';
+import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 // import { timer } from 'rxjs';
 
 @Component({
@@ -16,6 +18,7 @@ export class MainPagePage implements OnInit {
   user: any = []
   id: any
   sub: any
+  
   loading = false
   show = true
   talents: any
@@ -37,7 +40,9 @@ export class MainPagePage implements OnInit {
     public modalController: ModalController,
     private route: ActivatedRoute,
     private http: HttpClient,
-    public loadingController: LoadingController
+    private router: Router,
+    public loadingController: LoadingController,
+    private storage: Storage
   ) {
     
   }
@@ -86,6 +91,10 @@ export class MainPagePage implements OnInit {
     })
   }
 
+  back(){
+    this.router.navigate(['login2']);
+  }
+
   deleteTalent(id:any){
     let api2 = "https://reqres.in/api/users"
     this.http.delete(api2).subscribe((res)=>{
@@ -95,6 +104,9 @@ export class MainPagePage implements OnInit {
   } 
 
   ngOnInit() {
+    this.storage.get("user").then((data:any)=>{
+      this.user = data
+    })
     this.loading =true
     // this.cd.detectChanges();
     let api2 = "https://reqres.in/api/users"
@@ -102,20 +114,21 @@ export class MainPagePage implements OnInit {
       // this.talents = params.data
       
       setTimeout(() => {
-        this.loading = false
+        
         this.talents = params.data
+        this.loading = false
         // this.talent.splice(2,1)
         console.log(this.talents)
     },1500);
     })
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['id'];
-      console.log("id daw nya", this.id)
-      let api = "https://reqres.in/api/users/" + `${this.id}` + "?page=2"
-      this.http.get(api).subscribe((response: any) => {
-        this.user = response.data
-      });
-    })
+    // this.sub = this.route.params.subscribe(params => {
+    //   this.id = params['id'];
+    //   console.log("id daw nya", this.id)
+    //   let api = "https://reqres.in/api/users/" + `${this.id}` + "?page=2"
+    //   this.http.get(api).subscribe((response: any) => {
+    //     this.user = response.data
+    //   });
+    // })
   }
 
 
@@ -159,4 +172,17 @@ export class MainPagePage implements OnInit {
         console.log(data)
       })
     }
+
+  chatPage(){
+    let nick
+    console.log("user",this.user.first_name)
+    if(this.user.first_name == "Joshua"){
+      nick = "Jolina"
+    }if(this.user.first_name == "Jolina"){
+      nick = "Joshua"
+    }
+    console.log("nicksu",nick)
+    this.router.navigate(["chat-page/",nick])
   }
+  }
+

@@ -1,0 +1,38 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="" (click)="back()"></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			{{nickname}}
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content padding #content>
+	<ion-list >
+		<!-- <ion-grid  style="width: 100%;"> -->
+			<ion-row *ngFor="let chat of reversedList">
+				<ion-col *ngIf="chat.data.user == user">
+					<div class="ion-text-end padd" *ngIf="chat.data.message.length > 0">
+						<!-- <h3 s>{{user}}</h3> -->
+						{{chat.data.message}}
+					</div>
+				</ion-col>
+				<ion-col *ngIf="chat.data.user != user">
+					<div class="ion-text-start padd2" *ngIf="chat.data.message.length > 0">
+						<!-- <h3 s>{{user}}</h3> -->
+						{{chat.data.message}}
+					</div>
+				</ion-col>
+			</ion-row>
+		<!-- </ion-grid> -->
+
+	</ion-list>
+</ion-content>
+<ion-footer>
+	<ion-item>
+		<ion-input type="text" placeholder="type here..." [(ngModel)]="data.message"></ion-input>
+		<button ion-button clear item-right (click)="sendMessage()">Send</button>
+	</ion-item>
+</ion-footer>

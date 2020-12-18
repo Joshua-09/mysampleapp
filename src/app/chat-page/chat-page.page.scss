@@ -1,0 +1,33 @@
+.innermsg {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+.padd {
+    margin-right: 5%;
+    margin-left: 40%;
+    border-radius: 10px;
+    box-shadow: 2px 5px 20px -10px gray;
+    padding: 20px;
+    text-align: start;
+    background-color: pink;
+}
+.padd2 {
+    margin-right: 40%;
+    margin-left: 5%;
+    border-radius: 10px;
+    box-shadow: 2px 5px 20px -10px gray;
+    padding: 20px;
+    text-align: start;
+    background-color: white;
+}
+.innermsg.right {
+    float: left;
+    margin-right: 10%;
+    // background-color: #0084FF;
+    // color: white;
+}

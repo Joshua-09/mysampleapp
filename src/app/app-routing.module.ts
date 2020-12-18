@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'add-talentpage',
     loadChildren: () => import('./add-talentpage/add-talentpage.module').then( m => m.AddTalentpagePageModule)
   },
+  {
+    path: 'chat-page/:name',
+    loadChildren: () => import('./chat-page/chat-page.module').then( m => m.ChatPagePageModule)
+  },
 ];
 
 @NgModule({
