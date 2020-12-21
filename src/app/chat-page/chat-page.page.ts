@@ -18,10 +18,10 @@ export class ChatPagePage implements OnInit {
   user: any
   roomkey: any
   offStatus: any
-
   @ViewChild("content") content: IonContent;
   nickname: any
   chats: any = []
+  token:any
   reversedList: Array<any> = []
   data = { roomname: "", type: "", nickname: "", message: '' }
   ref = firebase.database().ref('chatrooms/');
@@ -37,6 +37,10 @@ export class ChatPagePage implements OnInit {
     private http: HttpClient,
 
   ) {
+    this.storage.get("chat").then(chat=>{
+      this.mess= chat
+      console.log(`chat : ${this.mess}`)
+    })
 
     this.storage.get("user").then((user: any) => {
       this.user = user.first_name
@@ -123,7 +127,7 @@ export class ChatPagePage implements OnInit {
   }
   sendMessage() {
 
-    let api3 = `http://ninth-flaxen-bugle.glitch.me/send?message=${this.data.message}&name=${this.user}`
+    let api3 = `http://ninth-flaxen-bugle.glitch.me/send?message=${this.data.message}&name=${this.user}&user1=${this.token}`
     this.http.get(api3, this.httpOptions).subscribe((data: any) => {
       console.log("data from glitch", data)
     })
@@ -166,15 +170,19 @@ export class ChatPagePage implements OnInit {
   }
   mess: any=[]
   ngOnInit() {
+
     this.fcm.getToken().then((data: any) => {
+      this.token = data
       console.log("token:", data)
     });
     // this.fcm.subscribeToTopic()
 
     this.fcm.onNotification().subscribe(datas => {
+
       console.log("fcm data", datas);
       this.mess.push({text: datas.payload, user: datas.name})
       console.log("fcm datas", this.mess[0].text);
+      this.storage.set("chat", this.mess)
       this.data.message = ""
       if (datas.wasTapped) {
         console.log('Received in background');

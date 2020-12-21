@@ -1,0 +1,22 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="main-page">
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+<!-- 
+    <ion-tab-button tab="chat-page/:name">
+      <ion-icon name="easel-outline"></ion-icon>
+      <ion-label></ion-label>
+    </ion-tab-button> -->
+
+    <!-- <ion-button (click)="addpresentModal()">Add</ion-button> -->
+
+    <ion-tab-button tab="chat-page/{{this.user}}">
+      <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+      <ion-label>Chat</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

@@ -81,7 +81,7 @@ export class Login2Page implements OnInit {
             setTimeout(()=>{
               this.presentLoading().then(()=>{
                 this.storage.set("user", this.user[x])
-                this.router.navigate(['main-page/',`${this.user[x].id}`]);
+                this.router.navigate(['tab']);
               })
             },1500
             )

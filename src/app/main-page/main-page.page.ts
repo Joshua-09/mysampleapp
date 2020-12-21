@@ -69,7 +69,6 @@ export class MainPagePage implements OnInit {
   }
 
   async addpresentModal(index: any) {
-    console.log(this.talents.length-1)
     const modal = await this.modalController.create({
       component: AddTalentpagePage,
       cssClass: 'modal',
@@ -79,8 +78,12 @@ export class MainPagePage implements OnInit {
       presentingElement: await this.modalController.getTop()
     });
     modal.onDidDismiss().then((res)=>{
-    this.talents[this.talents.length] = res.data.talent
+      if(res){
+        console.log("remove")
+      }else{
+        this.talents[this.talents.length] = res.data.talent
       this.addTalent(this.talents)
+      }
     });
     return await modal.present();
   }
@@ -166,7 +169,7 @@ export class MainPagePage implements OnInit {
     avatar: "https://reqres.in/img/faces/11-image.jpg"
   }
 
-    addTalent(talent:any) {
+    public addTalent(talent:any) {
       let api3 = "https://reqres.in/api/users"
       this.http.post(api3, talent).subscribe((data: any) => {
         console.log(data)
