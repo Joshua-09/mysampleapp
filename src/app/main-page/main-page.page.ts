@@ -78,7 +78,8 @@ export class MainPagePage implements OnInit {
       presentingElement: await this.modalController.getTop()
     });
     modal.onDidDismiss().then((res)=>{
-      if(res){
+      console.log(res)
+      if(res.data.talent == true){
         console.log("remove")
       }else{
         this.talents[this.talents.length] = res.data.talent
@@ -177,15 +178,7 @@ export class MainPagePage implements OnInit {
     }
 
   chatPage(){
-    let nick
-    console.log("user",this.user.first_name)
-    if(this.user.first_name == "Joshua"){
-      nick = "Jolina"
-    }if(this.user.first_name == "Jolina"){
-      nick = "Joshua"
-    }
-    console.log("nicksu",nick)
-    this.router.navigate(["chat-page/",nick])
+    this.router.navigate(["chat-page"])
   }
   }
 

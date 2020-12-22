@@ -3,6 +3,18 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'main-page',
+    loadChildren: () => import('./main-page/main-page.module').then( m => m.MainPagePageModule),
+    data: {
+      preload: true
+    },
+  },
+  {
+    path: 'chat-page',
+    loadChildren: () => import('./chat-page/chat-page.module').then( m => m.ChatPagePageModule)
+  },
+
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
@@ -26,10 +38,6 @@ const routes: Routes = [
   {
     path: 'add-talentpage',
     loadChildren: () => import('./add-talentpage/add-talentpage.module').then( m => m.AddTalentpagePageModule)
-  },
-  {
-    path: 'tab',
-    loadChildren: () => import('./tablist/tablist.module').then( m => m.TablistPageModule)
   },
 ];
 

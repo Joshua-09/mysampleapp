@@ -41,7 +41,7 @@ export class AddTalentpagePage implements OnInit {
 
   public closeModal() {
     this.modalCtrl.dismiss({
-      "close": true
+      "talent": true
     });
   }
 }

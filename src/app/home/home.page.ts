@@ -106,6 +106,9 @@ export class HomePage {
     });
     toast.present();
   }
+  back(){
+    this.router.navigate(['login'])
+  }
 
 
   hobbies = [

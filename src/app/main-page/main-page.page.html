@@ -7,9 +7,18 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-  <div style="height: 25px;">
-    <h3>Hi! <span><img (click)="back()" src="../assets/Group-2.png" height="25" width="25"></span></h3>
-  </div>
+  <ion-row>
+    <ion-col>
+      <div style="height: 25px;">
+        <h3>Hi! <span><img (click)="back()" src="../assets/Group-2.png" height="25" width="25"></span></h3>
+      </div>
+    </ion-col>
+    <ion-col>
+      <div (click)="chatPage()" style="float: right; height: 25px; "><ion-icon style="width: 40px; height: 40px; color:#900C3E" name="chatbubbles-outline"></ion-icon></div>
+    </ion-col>
+  </ion-row>
+ 
+  
   <h3 style="color: #900C3E">{{user.first_name}}</h3>
   <ion-searchbar mode="ios" showCancelButton="focus" class="ion-no-margin ion-no-padding" expand="block" animated>
   </ion-searchbar>
