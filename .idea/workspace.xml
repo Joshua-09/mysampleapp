@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="976d2db7-651e-43d1-8609-a28976ea6cf9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/home/home.page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/home.page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login2/login2.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login2/login2.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/main-page/main-page.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main-page/main-page.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/modalpage/modalpage.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modalpage/modalpage.module.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1m2XaPymocfDywshmQytM7VHwkb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDK Location" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="976d2db7-651e-43d1-8609-a28976ea6cf9" name="Default Changelist" comment="" />
+      <created>1608692722976</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608692722976</updated>
+    </task>
+    <servers />
+  </component>
+</project>

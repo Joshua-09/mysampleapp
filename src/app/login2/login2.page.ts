@@ -67,7 +67,7 @@ export class Login2Page implements OnInit {
     console.log('Loading dismissed!');
   }
 
-  private isSubmitted = false
+  isSubmitted = false
   public onSubmit(){
     console.log("enter")
     this.isSubmitted = true

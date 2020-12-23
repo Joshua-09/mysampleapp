@@ -15,6 +15,6 @@ import { ModalpagePage } from './modalpage.page';
     IonicModule,
     ModalpagePageRoutingModule
   ],
-  declarations: [ModalpagePage]
+  declarations: []
 })
 export class ModalpagePageModule {}

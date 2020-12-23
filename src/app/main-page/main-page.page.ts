@@ -68,7 +68,7 @@ export class MainPagePage implements OnInit {
     return await modal.present();
   }
 
-  async addpresentModal(index: any) {
+  async addpresentModal() {
     const modal = await this.modalController.create({
       component: AddTalentpagePage,
       cssClass: 'modal',

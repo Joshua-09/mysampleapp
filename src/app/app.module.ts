@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent,ModalpagePage],
-  entryComponents: [ModalpagePage],
+  entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule, AppRoutingModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
